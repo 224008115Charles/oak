@@ -1,0 +1,62 @@
+logging:
+  level:
+    ROOT: debug
+    cn.zhangxd.oak: debug
+
+spring:
+  profiles:
+    active: dev
+    include: swagger
+  jackson:
+      serialization.indent_output: true
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+      host: localhost
+      port: 8500
+  mail:
+    host: localhost
+    port: 25
+    username:
+    password:
+  thymeleaf:
+    cache: false
+  zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
+    base-url: http://localhost:9411
+    enabled: false
+    locator:
+      discovery:
+        enabled: true
+
+server:
+  port: 8081
+
+oak:
+  # CORS is disabled by default on microservices, as you should access them through a gateway.
+  # If you want to enable it, please uncomment the configuration below.
+  # cors:
+    # allowed-origins: "*"
+    # allowed-methods: "*"
+    # allowed-headers: "*"
+    # exposed-headers: "Authorization"
+    # allow-credentials: true
+    # max-age: 1800
+  security:
+    client-authorization:
+      access-token-uri: http://uaa/oauth/token
+      token-service-id: uaa
+      client-id: internal
+      client-secret: internal
+
+oauth2:
+  signature-verification:
+    public-key-endpoint-uri: http://uaa/oauth/token_key
+    #ttl for public keys to verify JWT tokens (in ms)
+    ttl: 3600000
+    #max. rate at which public keys will be fetched (in ms)
+    public-key-refresh-rate-limit: 10000
+  web-client-configuration:
+    #keep in sync with UAA configuration
+    client-id: web_app
+    secret: changeit

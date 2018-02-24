@@ -1,0 +1,91 @@
+zuul:
+  host:
+    max-total-connections: 1000
+    max-per-route-connections: 100
+  semaphore:
+    max-semaphores: 500
+  ignoredServices: 'consul,gateway'
+  ratelimit:
+    key-prefix: gateway-rate-limiting
+    enabled: true
+    repository: CONSUL
+    behind-proxy: true
+    default-policy-list: #optional - will apply unless specific policy exists
+      - limit: 100 #optional - request number limit per refresh interval window
+        quota: 1000 #optional - request time limit per refresh interval window (in seconds)
+        refresh-interval: 60 #default value (in seconds)
+        type: #optional
+          - user
+          - origin
+          - url
+    policy-list:
+      service:
+        - limit: 100 #optional - request number limit per refresh interval window
+          quota: 1000 #optional - request time limit per refresh interval window (in seconds)
+          refresh-interval: 60 #default value (in seconds)
+          type: #optional
+            - user
+            - origin
+            - url
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+management:
+  security:
+    roles: ADMIN
+  context-path: /management
+spring:
+  application:
+    name: gateway
+  cloud:
+    consul:
+      discovery:
+        healthCheckPath: /management/health
+        instanceId: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  mvc:
+    favicon:
+      enabled: false
+security:
+  basic:
+    enabled: false
+  oauth2:
+    resource:
+      filter-order: 3
+
+server:
+  session:
+    cookie:
+      http-only: true
+
+info:
+  project:
+    version: #project.version#
+
+oak:
+  #cors:
+    #allowed-origins: "*"
+    #allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+    #allowed-headers: "*"
+    #exposed-headers:
+    #allow-credentials: true
+    #max-age: 1800
+  swagger:
+    default-include-pattern: /api/.*
+    title: gateway API
+    description: gateway API documentation
+    version: ${info.project.version}
+    terms-of-service-url:
+    contact-name:
+    contact-url:
+    contact-email:
+    license:
+    license-url:

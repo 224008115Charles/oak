@@ -1,0 +1,64 @@
+logging:
+  level:
+    ROOT: info
+    cn.zhangxd.oak: info
+
+spring:
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+      host: localhost
+      port: 8500
+  mail:
+    host: localhost
+    port: 25
+    username: mimiron_service@163.com
+    password: 13671240120
+  thymeleaf:
+    cache: true
+  zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
+    base-url: http://localhost:9411
+    enabled: false
+    locator:
+      discovery:
+        enabled: true
+
+server:
+  port: 9999
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+    min-response-size: 1024
+
+oak:
+  security:
+    client-authorization:
+      client-id: internal
+      client-secret: internal
+    authentication:
+      jwt:
+        # Access Token is valid for 5 mins
+        token-validity-in-seconds: 300
+        # Refresh Token is valid for 7 days
+        token-validity-in-seconds-for-remember-me: 252000
+  mail: # specific oak mail property, for standard properties see MailProperties
+    from: mimiron_service@163.com
+    base-url: http://my-server-url-to-change # Modify according to your server's URL
+
+uaa:
+  #be sure to to change to a different keystore in production!
+  #create one using: keytool -genkeypair -keyalg RSA -keystore keystore_prod.jks -storepass <secretpasswd> -alias <myalias>
+  key-store:
+    name: keystore.jks
+    password: password
+    alias: selfsigned
+  web-client-configuration:
+    # Access Token is valid for 5 mins
+    access-token-validity-in-seconds: 300
+    # Refresh Token is valid for 7 days
+    refresh-token-validity-in-seconds-for-remember-me: 604800
+    #change client secret in production, keep in sync with gateway configuration
+    client-id: web_app
+    secret: changeit
+

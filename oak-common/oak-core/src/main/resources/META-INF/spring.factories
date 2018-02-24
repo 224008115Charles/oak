@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.zhangxd.oak.core.config.apidoc.SwaggerConfiguration,\
+  cn.zhangxd.oak.core.config.OakProperties,\
+  cn.zhangxd.oak.core.security.uaa.UaaAutoConfiguration
