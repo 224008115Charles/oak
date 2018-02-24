@@ -71,8 +71,6 @@ oak:
   #  exposed-headers:
   #  allow-credentials: true
   #  max-age: 1800
-  mail:
-    from: mimiron_service@163.com
   swagger:
     default-include-pattern: /api/.*
     title: uaa API

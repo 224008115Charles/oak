@@ -18,7 +18,7 @@ public class CodeGenerator {
         "user_role"
     };
     private static final String BASE_PACKAGE = "cn.zhangxd.oak.uaa";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/mimiron-uaa";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/oak_uaa";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "root";
 

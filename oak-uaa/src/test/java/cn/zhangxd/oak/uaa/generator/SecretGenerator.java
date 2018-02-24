@@ -18,7 +18,7 @@ public class SecretGenerator {
     @Before
     public void setup() {
         MockEnvironment e = new MockEnvironment();
-        e.setProperty("jasypt.encryptor.password", "mimiron");
+        e.setProperty("jasypt.encryptor.password", "fg1YAyCQHHU52xdA");
         stringEncryptor = new DefaultLazyEncryptor(e);
     }
 

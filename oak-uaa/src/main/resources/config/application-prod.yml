@@ -13,8 +13,8 @@ spring:
   mail:
     host: localhost
     port: 25
-    username: mimiron_service@163.com
-    password: 13671240120
+    username:
+    password:
   thymeleaf:
     cache: true
   zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
@@ -43,7 +43,7 @@ oak:
         # Refresh Token is valid for 7 days
         token-validity-in-seconds-for-remember-me: 252000
   mail: # specific oak mail property, for standard properties see MailProperties
-    from: mimiron_service@163.com
+    from:
     base-url: http://my-server-url-to-change # Modify according to your server's URL
 
 uaa:
