@@ -11,5 +11,6 @@
 
     <modules>
         <module>oak-core</module>
+        <module>oak-generator</module>
     </modules>
 </project>

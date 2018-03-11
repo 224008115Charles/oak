@@ -28,7 +28,7 @@
         <oak-core.version>1.0.0</oak-core.version>
         <springfox.version>2.8.0</springfox.version>
         <ratelimit.version>1.5.0.RELEASE</ratelimit.version>
-        <druid-starter.version>1.1.8</druid-starter.version>
+        <druid-starter.version>1.1.6</druid-starter.version>
         <mybatis-plus-boot-starter.version>2.1.9</mybatis-plus-boot-starter.version>
         <flyway.version>5.0.7</flyway.version>
         <jasypt.version>1.18</jasypt.version>

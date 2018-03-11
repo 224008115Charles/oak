@@ -1,7 +1,5 @@
-package cn.zhangxd.oak.uaa.generator;
+package cn.zhangxd.oak.generator;
 
-import cn.zhangxd.oak.core.generator.BaseGenerator;
-import cn.zhangxd.oak.core.generator.SimpleGenerator;
 import org.junit.Test;
 
 /**

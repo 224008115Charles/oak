@@ -1,4 +1,4 @@
-package cn.zhangxd.oak.core.generator;
+package cn.zhangxd.oak.generator;
 
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;

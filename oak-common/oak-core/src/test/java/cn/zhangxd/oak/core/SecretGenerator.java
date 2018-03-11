@@ -1,4 +1,4 @@
-package cn.zhangxd.oak.uaa.generator;
+package cn.zhangxd.oak.core;
 
 import com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor;
 import org.jasypt.encryption.StringEncryptor;
