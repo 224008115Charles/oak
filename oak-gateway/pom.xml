@@ -21,7 +21,7 @@
 
         <!-- Dependency versions -->
         <oak-bom.version>1.0.0</oak-bom.version>
-        <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
+        <spring-boot.version>1.5.10.RELEASE</spring-boot.version>
 
         <!-- Plugin versions -->
         <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>

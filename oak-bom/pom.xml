@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.spring.platform</groupId>
         <artifactId>platform-bom</artifactId>
-        <version>Brussels-SR6</version>
+        <version>Brussels-SR7</version>
         <relativePath/>
     </parent>
 
@@ -26,16 +26,16 @@
 
         <!-- Dependency versions -->
         <oak-core.version>1.0.0</oak-core.version>
-        <springfox.version>2.7.0</springfox.version>
-        <ratelimit.version>1.4.0.RELEASE</ratelimit.version>
-        <druid-starter.version>1.1.6</druid-starter.version>
+        <springfox.version>2.8.0</springfox.version>
+        <ratelimit.version>1.5.0.RELEASE</ratelimit.version>
+        <druid-starter.version>1.1.8</druid-starter.version>
         <mybatis-plus-boot-starter.version>2.1.9</mybatis-plus-boot-starter.version>
-        <flyway.version>5.0.6</flyway.version>
-        <spring-cloud-zipkin.version>1.2.5.RELEASE</spring-cloud-zipkin.version>
+        <flyway.version>5.0.7</flyway.version>
         <jasypt.version>1.18</jasypt.version>
 
-        <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
+        <spring-boot.version>1.5.10.RELEASE</spring-boot.version>
         <spring-cloud.version>Dalston.SR4</spring-cloud.version>
+        <spring-cloud-zipkin.version>1.2.5.RELEASE</spring-cloud-zipkin.version>
         <spring-cloud-stream.version>Chelsea.SR2</spring-cloud-stream.version>
 
     </properties>

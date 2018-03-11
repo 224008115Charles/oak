@@ -42,7 +42,7 @@ public class MicroserviceSecurityConfiguration extends ResourceServerConfigurerA
             .csrf()
             .disable()
 //            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//        .and()
+//            .and()
             .addFilterBefore(corsFilter, CsrfFilter.class)
             .headers()
             .frameOptions()
