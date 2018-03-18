@@ -15,7 +15,7 @@ import cn.zhangxd.oak.core.controller.BaseController;
  * @since 2018-03-18
  */
 @RestController
-@RequestMapping("/sys-org")
+@RequestMapping("/sys/org")
 public class SysOrgController extends BaseController {
 
 }

@@ -4,7 +4,7 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     OAK_SLEEP=0 \
     JAVA_OPTS=""
 
-ADD oak-service.jar /app.jar
+ADD oak-service-system.jar /app.jar
 
 EXPOSE 8081 5701/udp
 CMD echo "The application will start in ${OAK_SLEEP}s..." && \

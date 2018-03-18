@@ -15,7 +15,7 @@ import cn.zhangxd.oak.core.controller.BaseController;
  * @since 2018-03-18
  */
 @RestController
-@RequestMapping("/sys-user")
+@RequestMapping("/sys/user")
 public class SysUserController extends BaseController {
 
 }
