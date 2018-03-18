@@ -5,4 +5,4 @@
   ${AnsiColor.GREEN}╚██████╔╝${AnsiColor.RED}  ██║  ██║  ██║  ██╗
   ${AnsiColor.GREEN} ╚═════╝ ${AnsiColor.RED}  ╚═╝  ╚═╝  ╚═╝  ╚═╝
 
-${AnsiColor.BLUE}:: Oak Service :: Running Spring Boot ${spring-boot.version} ::
+${AnsiColor.BLUE}:: Oak System Service :: Running Spring Boot ${spring-boot.version} ::
