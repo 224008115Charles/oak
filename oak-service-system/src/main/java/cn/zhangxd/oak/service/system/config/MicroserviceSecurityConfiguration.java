@@ -33,21 +33,21 @@ public class MicroserviceSecurityConfiguration extends ResourceServerConfigurerA
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
         http
-            .csrf()
-            .disable()
-            .headers()
-            .frameOptions()
-            .disable()
-            .and()
+            .csrf().disable()
+            .headers().frameOptions().disable()
+        .and()
             .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
             .authorizeRequests()
-            .antMatchers("/api/**").authenticated()
-            .antMatchers("/management/health").permitAll()
-            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/swagger-resources/configuration/ui").permitAll();
+                .antMatchers("/api/**").authenticated()
+                .antMatchers("/management/health").permitAll()
+                .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                .antMatchers("/swagger-resources/configuration/ui").permitAll()
+        ;
+        // @formatter:off
     }
 
     @Bean

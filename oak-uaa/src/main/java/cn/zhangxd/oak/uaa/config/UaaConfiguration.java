@@ -71,36 +71,36 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
+            // @formatter:off
             http
                 .exceptionHandling()
-                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and()
-                .csrf()
-                .disable()
+                    .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+            .and()
+                .csrf().disable()
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-                .headers()
-                .frameOptions()
-                .disable()
-                .and()
+                .headers().frameOptions().disable()
+            .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
                 .authorizeRequests()
-                .antMatchers("/api/register").permitAll()
-                .antMatchers("/api/activate").permitAll()
-                .antMatchers("/api/authenticate").permitAll()
-                .antMatchers("/api/account/reset-password/init").permitAll()
-                .antMatchers("/api/account/reset-password/finish").permitAll()
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/management/health").permitAll()
-                .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/v2/api-docs/**").permitAll()
-                .antMatchers("/swagger-resources/configuration/ui").permitAll()
-                .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN);
+                    .antMatchers("/api/register").permitAll()
+                    .antMatchers("/api/activate").permitAll()
+                    .antMatchers("/api/authenticate").permitAll()
+                    .antMatchers("/api/account/reset-password/init").permitAll()
+                    .antMatchers("/api/account/reset-password/finish").permitAll()
+                    .antMatchers("/api/**").authenticated()
+                    .antMatchers("/management/health").permitAll()
+                    .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                    .antMatchers("/v2/api-docs/**").permitAll()
+                    .antMatchers("/swagger-resources/configuration/ui").permitAll()
+                    .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
+            ;
+            // @formatter:off
         }
 
         @Override
-        public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+        public void configure(ResourceServerSecurityConfigurer resources) {
             resources.resourceId("oak-uaa").tokenStore(tokenStore);
         }
     }
@@ -142,7 +142,7 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         //pick up all  TokenEnhancers incl. those defined in the application
         //this avoids changes to this class if an application wants to add its own to the chain
         Collection<TokenEnhancer> tokenEnhancers = applicationContext.getBeansOfType(TokenEnhancer.class).values();

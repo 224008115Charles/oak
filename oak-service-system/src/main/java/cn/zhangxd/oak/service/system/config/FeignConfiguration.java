@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
  * @author zhangxd
  */
 @Configuration
-@EnableFeignClients(basePackages = "cn.zhangxd.oak.system")
+@EnableFeignClients(basePackages = "cn.zhangxd.oak.service.system")
 public class FeignConfiguration {
 
 }
