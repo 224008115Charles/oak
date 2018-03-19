@@ -123,6 +123,7 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
         /*
         For a better client design, this should be done by a ClientDetailsService (similar to UserDetailsService).
          */
+        // @formatter:off
         clients.inMemory()
             .withClient(uaaProperties.getWebClientConfiguration().getClientId())
             .secret(uaaProperties.getWebClientConfiguration().getSecret())
@@ -131,14 +132,16 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
             .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code")
             .accessTokenValiditySeconds(accessTokenValidity)
             .refreshTokenValiditySeconds(refreshTokenValidity)
-            .and()
+        .and()
             .withClient(oakProperties.getSecurity().getClientAuthorization().getClientId())
             .secret(oakProperties.getSecurity().getClientAuthorization().getClientSecret())
             .scopes("web-app")
             .autoApprove(true)
             .authorizedGrantTypes("client_credentials")
             .accessTokenValiditySeconds((int) oakProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSeconds())
-            .refreshTokenValiditySeconds((int) oakProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSecondsForRememberMe());
+            .refreshTokenValiditySeconds((int) oakProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSecondsForRememberMe())
+        ;
+        // @formatter:off
     }
 
     @Override
