@@ -13,4 +13,12 @@ import cn.zhangxd.oak.core.mapper.BaseMapper;
  */
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
+    /**
+     * 根据登录名查询用户及角色
+     *
+     * @param lowercaseLogin
+     * @return
+     */
+    SysUser selectOneWithRoleByLogin(String lowercaseLogin);
+
 }

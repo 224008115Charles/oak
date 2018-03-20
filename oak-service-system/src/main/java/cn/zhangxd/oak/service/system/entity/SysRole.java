@@ -4,6 +4,8 @@ import cn.zhangxd.oak.core.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableLogic;
 
+import java.util.Objects;
+
 /**
  * <p>
  * 系统角色
@@ -72,12 +74,33 @@ public class SysRole extends BaseEntity {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof SysRole)) {
+            return false;
+        }
+        SysRole sysRole = (SysRole) o;
+        return Objects.equals(code, sysRole.code) &&
+            Objects.equals(name, sysRole.name) &&
+            Objects.equals(remarks, sysRole.remarks) &&
+            Objects.equals(deleted, sysRole.deleted);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(code, name, remarks, deleted);
+    }
+
+    @Override
     public String toString() {
         return "SysRole{" +
         ", code=" + code +
         ", name=" + name +
         ", remarks=" + remarks +
         ", deleted=" + deleted +
-        "}";
+        "} " + super.toString();
     }
 }

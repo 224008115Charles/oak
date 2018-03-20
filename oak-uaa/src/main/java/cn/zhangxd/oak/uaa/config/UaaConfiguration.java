@@ -120,9 +120,6 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
         accessTokenValidity = Math.max(accessTokenValidity, MIN_ACCESS_TOKEN_VALIDITY_SECS);
         int refreshTokenValidity = uaaProperties.getWebClientConfiguration().getRefreshTokenValidityInSecondsForRememberMe();
         refreshTokenValidity = Math.max(refreshTokenValidity, accessTokenValidity);
-        /*
-        For a better client design, this should be done by a ClientDetailsService (similar to UserDetailsService).
-         */
         // @formatter:off
         clients.inMemory()
             .withClient(uaaProperties.getWebClientConfiguration().getClientId())

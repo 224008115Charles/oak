@@ -176,6 +176,6 @@ public class SysMenu extends BaseEntity {
         ", permission=" + permission +
         ", remarks=" + remarks +
         ", deleted=" + deleted +
-        "}";
+        "} " + super.toString();
     }
 }

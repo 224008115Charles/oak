@@ -14,7 +14,6 @@
         <module>oak-common</module>
         <module>oak-uaa</module>
         <module>oak-gateway-internal</module>
-        <module>oak-service</module>
         <module>oak-service-system</module>
     </modules>
 </project>

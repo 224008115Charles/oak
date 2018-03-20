@@ -20,7 +20,7 @@ public class OAuth2InterceptedFeignConfiguration {
     }
 
     @Bean(name = "oauth2RequestInterceptor")
-    public RequestInterceptor getOAuth2RequestInterceptor() throws IOException {
+    public RequestInterceptor getOAuth2RequestInterceptor() {
         return new OAuth2FeignRequestInterceptor(new DefaultOAuth2ClientContext(), loadBalancedResourceDetails);
     }
 }

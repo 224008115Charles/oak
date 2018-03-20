@@ -4,6 +4,7 @@ import cn.zhangxd.oak.service.system.entity.SysUser;
 import cn.zhangxd.oak.service.system.mapper.SysUserMapper;
 import cn.zhangxd.oak.service.system.service.ISysUserService;
 import cn.zhangxd.oak.core.service.impl.BaseServiceImpl;
+import cn.zhangxd.oak.service.system.service.dto.WithPasswordUserDTO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
 
+    @Override
+    public WithPasswordUserDTO findUserByLogin(String login) {
+        SysUser user = baseMapper.selectOneWithRoleByLogin(login);
+        return new WithPasswordUserDTO(user);
+    }
 }

@@ -15,41 +15,12 @@ spring:
         prefer-ip-address: true
       host: localhost
       port: 8500
-  datasource:
-    url: jdbc:mysql://localhost:3306/oak_uaa?useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: root
-    password: ENC(moI6V+Ba34e3dKlukrdpJA==)
-    driver-class-name: com.mysql.jdbc.Driver
-    druid:
-      initial-size: 1
-      min-idle: 1
-      max-active: 20
-      test-on-borrow: true
-      stat-view-servlet:
-        allow: true
-  mail:
-    host: smtp.163.com
-    port: 25
-    username: oakservice@163.com
-    password: ENC(HsOEBeNVwl7zIpk5fu2Sc3ulBKY5enxlNAdh5V5ngUo=)
-  messages:
-    cache-seconds: 1
-  thymeleaf:
-    cache: false
   zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
     base-url: http://localhost:9411
     enabled: false
     locator:
       discovery:
         enabled: true
-
-mybatis-plus:
-  global-config:
-    #刷新mapper
-    refresh-mapper: true
-
-flyway:
-  locations: classpath:/script
 
 jasypt:
   encryptor:

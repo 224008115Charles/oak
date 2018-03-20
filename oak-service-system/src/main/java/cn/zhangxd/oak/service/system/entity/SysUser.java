@@ -3,6 +3,11 @@ package cn.zhangxd.oak.service.system.entity;
 import cn.zhangxd.oak.core.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableLogic;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 
 /**
  * <p>
@@ -63,13 +68,15 @@ public class SysUser extends BaseEntity {
     @TableLogic
     private Boolean deleted;
 
+    @TableField(exist=false)
+    private Set<SysRole> roles = new HashSet<>();
 
     public String getLogin() {
         return login;
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        this.login = StringUtils.lowerCase(login, Locale.ENGLISH);
     }
 
     public String getPassword() {
@@ -93,7 +100,7 @@ public class SysUser extends BaseEntity {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = StringUtils.lowerCase(email, Locale.ENGLISH);
     }
 
     public String getPhone() {
@@ -136,6 +143,14 @@ public class SysUser extends BaseEntity {
         this.deleted = deleted;
     }
 
+    public Set<SysRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<SysRole> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public String toString() {
         return "SysUser{" +
@@ -148,6 +163,6 @@ public class SysUser extends BaseEntity {
         ", enabled=" + enabled +
         ", remarks=" + remarks +
         ", deleted=" + deleted +
-        "}";
+        "} " + super.toString();
     }
 }

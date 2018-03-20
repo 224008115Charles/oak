@@ -18,4 +18,28 @@
         <result column="is_deleted" property="deleted"/>
     </resultMap>
 
+    <resultMap id="UserRoleMap" extends="BaseResultMap" type="cn.zhangxd.oak.service.system.entity.SysUser">
+        <collection property="roles" columnPrefix="role_"
+                    resultMap="cn.zhangxd.oak.service.system.mapper.SysRoleMapper.BaseResultMap"/>
+    </resultMap>
+
+    <select id="selectOneWithRoleByLogin" resultMap="UserRoleMap">
+        SELECT
+            u.id,
+            u.login,
+            u.password,
+            u.name,
+            u.email,
+            u.phone,
+            u.mobile,
+            u.is_enabled,
+            u.remarks,
+            u.gmt_create,
+            u.gmt_modified,
+            r.code role_code
+        FROM sys_user u
+        LEFT JOIN sys_user_role ur ON u.id = ur.user_id AND u.is_deleted = 0
+        LEFT JOIN sys_role r ON ur.role_id = r.id AND r.is_deleted = 0
+        WHERE u.login = #{login}
+    </select>
 </mapper>

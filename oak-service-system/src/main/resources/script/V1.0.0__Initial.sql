@@ -1,7 +1,7 @@
 CREATE TABLE `sys_user`  (
     `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
     `login` varchar(50) NOT NULL COMMENT '登录名',
-    `password` varchar(50) NOT NULL COMMENT '密码',
+    `password` varchar(60) NOT NULL COMMENT '密码',
     `name` varchar(50) COMMENT '姓名',
     `email` varchar(50) COMMENT '邮件',
     `phone` varchar(50) COMMENT '电话',

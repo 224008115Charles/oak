@@ -5,7 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.zhangxd.oak.service.system.entity.SysUserOrg">
         <id column="user_id" property="userId"/>
-        <result column="org_id" property="orgId"/>
+        <id column="org_id" property="orgId"/>
     </resultMap>
 
 </mapper>

@@ -1,10 +1,8 @@
 package cn.zhangxd.oak.service.system.entity;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableLogic;
-import com.baomidou.mybatisplus.annotations.Version;
 import cn.zhangxd.oak.core.entity.BaseEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 
 /**
  * <p>
@@ -80,6 +78,6 @@ public class SysOrg extends BaseEntity {
         ", name=" + name +
         ", remarks=" + remarks +
         ", deleted=" + deleted +
-        "}";
+        "} " + super.toString();
     }
 }
