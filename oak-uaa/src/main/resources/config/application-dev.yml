@@ -44,9 +44,6 @@ oak:
       token-service-id: uaa
       client-id: internal
       client-secret: internal
-  mail: # specific Oak mail property, for standard properties see MailProperties
-    from: oakservice@163.com
-    base-url: http://127.0.0.1:9999
 
 oauth2:
   signature-verification:

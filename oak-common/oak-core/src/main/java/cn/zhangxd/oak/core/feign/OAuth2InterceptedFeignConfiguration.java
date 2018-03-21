@@ -5,12 +5,11 @@ import cn.zhangxd.oak.core.security.uaa.LoadBalancedResourceDetails;
 import feign.RequestInterceptor;
 import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 
-import java.io.IOException;
-
-@Configuration
+/**
+ * @author zhangxd
+ */
 public class OAuth2InterceptedFeignConfiguration {
 
     private final LoadBalancedResourceDetails loadBalancedResourceDetails;

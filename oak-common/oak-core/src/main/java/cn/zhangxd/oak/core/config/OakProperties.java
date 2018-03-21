@@ -3,8 +3,6 @@ package cn.zhangxd.oak.core.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.cors.CorsConfiguration;
 
-import javax.validation.constraints.NotNull;
-
 /**
  * Properties specific to Oak.
  * <p>
@@ -15,17 +13,11 @@ import javax.validation.constraints.NotNull;
 @ConfigurationProperties(prefix = "oak", ignoreUnknownFields = false)
 public class OakProperties {
 
-    private final Mail mail = new Mail();
-
     private final Security security = new Security();
 
     private final Swagger swagger = new Swagger();
 
     private final CorsConfiguration cors = new CorsConfiguration();
-
-    public Mail getMail() {
-        return mail;
-    }
 
     public Security getSecurity() {
         return security;
@@ -39,40 +31,11 @@ public class OakProperties {
         return cors;
     }
 
-    public static class Mail {
-
-        private String from = "";
-
-        private String baseUrl = "";
-
-        public String getFrom() {
-            return from;
-        }
-
-        public void setFrom(String from) {
-            this.from = from;
-        }
-
-        public String getBaseUrl() {
-            return baseUrl;
-        }
-
-        public void setBaseUrl(String baseUrl) {
-            this.baseUrl = baseUrl;
-        }
-    }
-
     public static class Security {
-
-        private final RememberMe rememberMe = new RememberMe();
 
         private final ClientAuthorization clientAuthorization = new ClientAuthorization();
 
         private final Authentication authentication = new Authentication();
-
-        public RememberMe getRememberMe() {
-            return rememberMe;
-        }
 
         public ClientAuthorization getClientAuthorization() {
             return clientAuthorization;
@@ -167,19 +130,6 @@ public class OakProperties {
             }
         }
 
-        public static class RememberMe {
-
-            @NotNull
-            private String key;
-
-            public String getKey() {
-                return key;
-            }
-
-            public void setKey(String key) {
-                this.key = key;
-            }
-        }
     }
 
     public static class Swagger {
