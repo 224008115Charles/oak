@@ -1,4 +1,4 @@
-package cn.zhangxd.oak.service.system.client;
+package cn.zhangxd.oak.core.feign;
 
 import feign.RequestInterceptor;
 import org.springframework.context.annotation.Bean;

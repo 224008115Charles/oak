@@ -1,6 +1,6 @@
 package cn.zhangxd.oak.gateway.internal.web.filter;
 
-import cn.zhangxd.oak.gateway.internal.security.oauth2.OAuth2AuthenticationService;
+import cn.zhangxd.oak.gateway.internal.security.OAuth2AuthenticationService;
 
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

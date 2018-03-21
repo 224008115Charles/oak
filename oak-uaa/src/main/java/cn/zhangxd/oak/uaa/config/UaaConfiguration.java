@@ -5,13 +5,12 @@ import cn.zhangxd.oak.core.security.AuthoritiesConstants;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cloud.client.loadbalancer.RestTemplateCustomizer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -30,6 +29,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.CorsFilter;
 
 import javax.servlet.http.HttpServletResponse;
@@ -40,8 +40,6 @@ import java.util.Collection;
 /**
  * @author zhangxd
  */
-@EnableAsync
-@EnableScheduling
 @Configuration
 @EnableAuthorizationServer
 public class UaaConfiguration extends AuthorizationServerConfigurerAdapter implements ApplicationContextAware {
@@ -84,12 +82,6 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
                 .authorizeRequests()
-                    .antMatchers("/api/register").permitAll()
-                    .antMatchers("/api/activate").permitAll()
-                    .antMatchers("/api/authenticate").permitAll()
-                    .antMatchers("/api/account/reset-password/init").permitAll()
-                    .antMatchers("/api/account/reset-password/finish").permitAll()
-                    .antMatchers("/api/**").authenticated()
                     .antMatchers("/management/health").permitAll()
                     .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
                     .antMatchers("/v2/api-docs/**").permitAll()
@@ -102,6 +94,20 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
             resources.resourceId("oak-uaa").tokenStore(tokenStore);
+        }
+
+        @Bean
+        @Qualifier("loadBalancedRestTemplate")
+        public RestTemplate loadBalancedRestTemplate(RestTemplateCustomizer customizer) {
+            RestTemplate restTemplate = new RestTemplate();
+            customizer.customize(restTemplate);
+            return restTemplate;
+        }
+
+        @Bean
+        @Qualifier("vanillaRestTemplate")
+        public RestTemplate vanillaRestTemplate() {
+            return new RestTemplate();
         }
     }
 

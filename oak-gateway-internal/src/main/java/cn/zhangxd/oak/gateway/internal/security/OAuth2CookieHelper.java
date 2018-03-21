@@ -1,6 +1,6 @@
-package cn.zhangxd.oak.gateway.internal.security.oauth2;
+package cn.zhangxd.oak.gateway.internal.security;
 
-import cn.zhangxd.oak.gateway.internal.config.oauth2.OAuth2Properties;
+import cn.zhangxd.oak.core.security.oauth2.OAuth2Properties;
 import com.google.common.net.InternetDomainName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

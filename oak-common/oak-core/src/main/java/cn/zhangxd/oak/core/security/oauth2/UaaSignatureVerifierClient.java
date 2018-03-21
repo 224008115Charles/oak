@@ -1,6 +1,5 @@
-package cn.zhangxd.oak.service.system.security.oauth2;
+package cn.zhangxd.oak.core.security.oauth2;
 
-import cn.zhangxd.oak.service.system.config.oauth2.OAuth2Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -41,7 +40,7 @@ public class UaaSignatureVerifierClient implements OAuth2SignatureVerifierClient
      * @return the public key used to verify JWT tokens; or null.
      */
     @Override
-    public SignatureVerifier getSignatureVerifier() {
+    public SignatureVerifier getSignatureVerifier() throws Exception {
         try {
             HttpEntity<Void> request = new HttpEntity<>(new HttpHeaders());
             String key = (String) restTemplate

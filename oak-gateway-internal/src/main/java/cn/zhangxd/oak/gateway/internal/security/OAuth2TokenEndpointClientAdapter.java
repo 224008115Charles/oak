@@ -1,14 +1,10 @@
-package cn.zhangxd.oak.gateway.internal.security.oauth2;
+package cn.zhangxd.oak.gateway.internal.security;
 
 import cn.zhangxd.oak.core.config.OakProperties;
-import cn.zhangxd.oak.gateway.internal.config.oauth2.OAuth2Properties;
+import cn.zhangxd.oak.core.security.oauth2.OAuth2Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.InvalidClientException;
 import org.springframework.util.LinkedMultiValueMap;

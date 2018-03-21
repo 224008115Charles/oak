@@ -1,9 +1,9 @@
 package cn.zhangxd.oak.service.system.config;
 
 import cn.zhangxd.oak.core.security.AuthoritiesConstants;
-import cn.zhangxd.oak.service.system.config.oauth2.OAuth2JwtAccessTokenConverter;
-import cn.zhangxd.oak.service.system.config.oauth2.OAuth2Properties;
-import cn.zhangxd.oak.service.system.security.oauth2.OAuth2SignatureVerifierClient;
+import cn.zhangxd.oak.core.config.oauth2.OAuth2JwtAccessTokenConverter;
+import cn.zhangxd.oak.core.security.oauth2.OAuth2Properties;
+import cn.zhangxd.oak.core.security.oauth2.OAuth2SignatureVerifierClient;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.loadbalancer.RestTemplateCustomizer;
 import org.springframework.context.annotation.Bean;

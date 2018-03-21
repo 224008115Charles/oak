@@ -1,4 +1,4 @@
-package cn.zhangxd.oak.service.system.security.oauth2;
+package cn.zhangxd.oak.core.security.oauth2;
 
 import org.springframework.security.jwt.crypto.sign.SignatureVerifier;
 
@@ -8,7 +8,6 @@ import org.springframework.security.jwt.crypto.sign.SignatureVerifier;
  * and use it to build a SignatureVerifier in a server specific way.
  *
  * @author zhangxd
- * @see UaaSignatureVerifierClient
  */
 public interface OAuth2SignatureVerifierClient {
     /**

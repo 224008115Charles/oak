@@ -2,7 +2,7 @@ package cn.zhangxd.oak.service.system;
 
 import cn.zhangxd.oak.core.config.DefaultProfileUtil;
 import cn.zhangxd.oak.core.config.OakConstants;
-import cn.zhangxd.oak.service.system.client.OAuth2InterceptedFeignConfiguration;
+import cn.zhangxd.oak.core.feign.OAuth2InterceptedFeignConfiguration;
 import cn.zhangxd.oak.service.system.config.ApplicationProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

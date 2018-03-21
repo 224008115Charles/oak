@@ -1,6 +1,7 @@
-package cn.zhangxd.oak.gateway.internal.config.oauth2;
+package cn.zhangxd.oak.core.config.oauth2;
 
-import cn.zhangxd.oak.gateway.internal.security.oauth2.OAuth2SignatureVerifierClient;
+import cn.zhangxd.oak.core.security.oauth2.OAuth2Properties;
+import cn.zhangxd.oak.core.security.oauth2.OAuth2SignatureVerifierClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.jwt.crypto.sign.SignatureVerifier;

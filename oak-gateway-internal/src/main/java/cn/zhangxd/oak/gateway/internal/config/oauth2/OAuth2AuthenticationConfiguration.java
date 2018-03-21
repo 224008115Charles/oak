@@ -1,9 +1,10 @@
 package cn.zhangxd.oak.gateway.internal.config.oauth2;
 
-import cn.zhangxd.oak.gateway.internal.security.oauth2.CookieTokenExtractor;
-import cn.zhangxd.oak.gateway.internal.security.oauth2.OAuth2AuthenticationService;
-import cn.zhangxd.oak.gateway.internal.security.oauth2.OAuth2CookieHelper;
-import cn.zhangxd.oak.gateway.internal.security.oauth2.OAuth2TokenEndpointClient;
+import cn.zhangxd.oak.core.security.oauth2.OAuth2Properties;
+import cn.zhangxd.oak.gateway.internal.security.CookieTokenExtractor;
+import cn.zhangxd.oak.gateway.internal.security.OAuth2AuthenticationService;
+import cn.zhangxd.oak.gateway.internal.security.OAuth2CookieHelper;
+import cn.zhangxd.oak.gateway.internal.security.OAuth2TokenEndpointClient;
 import cn.zhangxd.oak.gateway.internal.web.filter.RefreshTokenFilterConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,12 +37,7 @@ public class OAuth2AuthenticationConfiguration extends ResourceServerConfigurerA
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-            .antMatchers("/auth/login").permitAll()
-            .antMatchers("/auth/logout").authenticated()
-            .and()
-            .apply(refreshTokenSecurityConfigurerAdapter());
+        http.apply(refreshTokenSecurityConfigurerAdapter());
     }
 
     /**
@@ -65,7 +61,7 @@ public class OAuth2AuthenticationConfiguration extends ResourceServerConfigurerA
      * Configure the ResourceServer security by installing a new TokenExtractor.
      */
     @Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+    public void configure(ResourceServerSecurityConfigurer resources) {
         resources.tokenExtractor(tokenExtractor());
     }
 

@@ -1,7 +1,7 @@
 package cn.zhangxd.oak.gateway.internal.web.filter;
 
-import cn.zhangxd.oak.gateway.internal.security.oauth2.OAuth2AuthenticationService;
-import cn.zhangxd.oak.gateway.internal.security.oauth2.OAuth2CookieHelper;
+import cn.zhangxd.oak.gateway.internal.security.OAuth2AuthenticationService;
+import cn.zhangxd.oak.gateway.internal.security.OAuth2CookieHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;

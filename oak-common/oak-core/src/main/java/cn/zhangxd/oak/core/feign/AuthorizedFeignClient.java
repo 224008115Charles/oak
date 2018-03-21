@@ -1,4 +1,4 @@
-package cn.zhangxd.oak.service.system.client;
+package cn.zhangxd.oak.core.feign;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.cloud.netflix.feign.FeignClientsConfiguration;

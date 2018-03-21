@@ -1,7 +1,7 @@
-package cn.zhangxd.oak.gateway.internal.security.oauth2;
+package cn.zhangxd.oak.gateway.internal.security;
 
 import cn.zhangxd.oak.core.config.OakProperties;
-import cn.zhangxd.oak.gateway.internal.config.oauth2.OAuth2Properties;
+import cn.zhangxd.oak.core.security.oauth2.OAuth2Properties;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;

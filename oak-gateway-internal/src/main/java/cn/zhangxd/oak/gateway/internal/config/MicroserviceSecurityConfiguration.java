@@ -1,9 +1,9 @@
 package cn.zhangxd.oak.gateway.internal.config;
 
+import cn.zhangxd.oak.core.config.oauth2.OAuth2JwtAccessTokenConverter;
 import cn.zhangxd.oak.core.security.AuthoritiesConstants;
-import cn.zhangxd.oak.gateway.internal.config.oauth2.OAuth2JwtAccessTokenConverter;
-import cn.zhangxd.oak.gateway.internal.config.oauth2.OAuth2Properties;
-import cn.zhangxd.oak.gateway.internal.security.oauth2.OAuth2SignatureVerifierClient;
+import cn.zhangxd.oak.core.security.oauth2.OAuth2Properties;
+import cn.zhangxd.oak.core.security.oauth2.OAuth2SignatureVerifierClient;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.loadbalancer.RestTemplateCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +28,6 @@ import org.springframework.web.filter.CorsFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class MicroserviceSecurityConfiguration extends ResourceServerConfigurerAdapter {
     private final OAuth2Properties oAuth2Properties;
-
     private final CorsFilter corsFilter;
 
     public MicroserviceSecurityConfiguration(OAuth2Properties oAuth2Properties, CorsFilter corsFilter) {
@@ -38,24 +37,25 @@ public class MicroserviceSecurityConfiguration extends ResourceServerConfigurerA
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
         http
             .csrf()
             .disable()
 //            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//            .and()
+//        .and()
             .addFilterBefore(corsFilter, CsrfFilter.class)
-            .headers()
-            .frameOptions()
-            .disable()
-            .and()
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
+            .headers().frameOptions().disable()
+        .and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
             .authorizeRequests()
-            .antMatchers("/api/**").authenticated()
-            .antMatchers("/management/health").permitAll()
-            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/swagger-resources/configuration/ui").permitAll();
+                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/auth/logout").authenticated()
+                .antMatchers("/management/health").permitAll()
+                .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                .antMatchers("/swagger-resources/configuration/ui").permitAll()
+        ;
+        // @formatter:off
     }
 
     @Bean

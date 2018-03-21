@@ -1,4 +1,4 @@
-package cn.zhangxd.oak.gateway.internal.security.oauth2;
+package cn.zhangxd.oak.gateway.internal.security;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;

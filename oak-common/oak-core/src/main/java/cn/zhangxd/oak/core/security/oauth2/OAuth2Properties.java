@@ -1,4 +1,4 @@
-package cn.zhangxd.oak.service.system.config.oauth2;
+package cn.zhangxd.oak.core.security.oauth2;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

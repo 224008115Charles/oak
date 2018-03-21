@@ -1,4 +1,4 @@
-package cn.zhangxd.oak.service.system.client;
+package cn.zhangxd.oak.core.feign;
 
 
 import cn.zhangxd.oak.core.security.uaa.LoadBalancedResourceDetails;

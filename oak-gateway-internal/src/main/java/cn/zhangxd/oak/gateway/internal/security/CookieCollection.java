@@ -1,4 +1,4 @@
-package cn.zhangxd.oak.gateway.internal.security.oauth2;
+package cn.zhangxd.oak.gateway.internal.security;
 
 import javax.servlet.http.Cookie;
 import java.util.*;
