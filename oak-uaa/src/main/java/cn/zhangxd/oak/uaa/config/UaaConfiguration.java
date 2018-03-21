@@ -124,7 +124,7 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
         clients.inMemory()
             .withClient(uaaProperties.getWebClientConfiguration().getClientId())
             .secret(uaaProperties.getWebClientConfiguration().getSecret())
-            .scopes("openid")
+            .scopes("api")
             .autoApprove(true)
             .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code")
             .accessTokenValiditySeconds(accessTokenValidity)

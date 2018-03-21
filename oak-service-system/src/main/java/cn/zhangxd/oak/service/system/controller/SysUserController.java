@@ -5,6 +5,7 @@ import cn.zhangxd.oak.core.controller.BaseController;
 import cn.zhangxd.oak.service.system.service.ISysUserService;
 import cn.zhangxd.oak.service.system.service.dto.WithPasswordUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,7 @@ public class SysUserController extends BaseController {
      * @param login 用户名
      * @return UseVo 对象
      */
+    @PreAuthorize("#oauth2.hasScope('web-app')")
     @GetMapping("/findUserByLogin/{login}")
     public WithPasswordUserDTO findUserByUsername(@PathVariable String login) {
         return userService.findUserByLogin(login);
