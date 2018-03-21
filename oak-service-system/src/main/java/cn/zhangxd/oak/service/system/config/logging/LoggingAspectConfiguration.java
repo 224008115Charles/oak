@@ -1,6 +1,5 @@
-package cn.zhangxd.oak.uaa.config;
+package cn.zhangxd.oak.service.system.config.logging;
 
-import cn.zhangxd.oak.uaa.aop.logging.LoggingAspect;
 import cn.zhangxd.oak.core.config.OakConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

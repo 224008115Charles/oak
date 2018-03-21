@@ -1,5 +1,4 @@
-package cn.zhangxd.oak.gateway.internal.aop.logging;
-
+package cn.zhangxd.oak.service.system.config.logging;
 
 import cn.zhangxd.oak.core.config.OakConstants;
 import org.aspectj.lang.JoinPoint;
@@ -44,7 +43,8 @@ public class LoggingAspect {
     /**
      * Pointcut that matches all Spring beans in the application's main packages.
      */
-    @Pointcut("within(cn.zhangxd.oak.gateway.internal.web.rest..*)")
+    @Pointcut("within(cn.zhangxd.oak.service.system.service..*)" +
+        " || within(cn.zhangxd.oak.service.system.controller..*)")
     public void applicationPackagePointcut() {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }
@@ -90,6 +90,7 @@ public class LoggingAspect {
         } catch (IllegalArgumentException e) {
             log.error("Illegal argument: {} in {}.{}()", Arrays.toString(joinPoint.getArgs()),
                 joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+
             throw e;
         }
     }

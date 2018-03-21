@@ -1,7 +1,6 @@
-package cn.zhangxd.oak.service.system.config;
+package cn.zhangxd.oak.gateway.internal.config.logging;
 
 import cn.zhangxd.oak.core.config.OakConstants;
-import cn.zhangxd.oak.service.system.aop.logging.LoggingAspect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
