@@ -98,19 +98,9 @@ public class OakProperties {
 
             public static class Jwt {
 
-                private String secret;
-
                 private long tokenValidityInSeconds = 1800;
 
                 private long tokenValidityInSecondsForRememberMe = 2592000;
-
-                public String getSecret() {
-                    return secret;
-                }
-
-                public void setSecret(String secret) {
-                    this.secret = secret;
-                }
 
                 public long getTokenValidityInSeconds() {
                     return tokenValidityInSeconds;
