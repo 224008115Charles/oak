@@ -1,5 +1,6 @@
 package cn.zhangxd.oak.service.system.service.impl;
 
+import cn.zhangxd.oak.core.exception.InternalServerErrorException;
 import cn.zhangxd.oak.service.system.entity.SysUser;
 import cn.zhangxd.oak.service.system.mapper.SysUserMapper;
 import cn.zhangxd.oak.service.system.service.ISysUserService;
@@ -21,6 +22,9 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
     @Override
     public WithPasswordUserDTO findUserByLogin(String login) {
         SysUser user = baseMapper.selectOneWithRoleByLogin(login);
+        if (user == null) {
+            throw new InternalServerErrorException(String.format("用户 '%s' 不存在", login));
+        }
         return new WithPasswordUserDTO(user);
     }
 }

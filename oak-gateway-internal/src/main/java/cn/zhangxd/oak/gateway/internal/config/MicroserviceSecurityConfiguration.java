@@ -16,9 +16,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.filter.CorsFilter;
 
 /**
  * @author zhangxd
@@ -28,11 +26,9 @@ import org.springframework.web.filter.CorsFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class MicroserviceSecurityConfiguration extends ResourceServerConfigurerAdapter {
     private final OAuth2Properties oAuth2Properties;
-    private final CorsFilter corsFilter;
 
-    public MicroserviceSecurityConfiguration(OAuth2Properties oAuth2Properties, CorsFilter corsFilter) {
+    public MicroserviceSecurityConfiguration(OAuth2Properties oAuth2Properties) {
         this.oAuth2Properties = oAuth2Properties;
-        this.corsFilter = corsFilter;
     }
 
     @Override
@@ -43,7 +39,6 @@ public class MicroserviceSecurityConfiguration extends ResourceServerConfigurerA
             .disable()
 //            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //        .and()
-            .addFilterBefore(corsFilter, CsrfFilter.class)
             .headers().frameOptions().disable()
         .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

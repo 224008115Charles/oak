@@ -31,24 +31,27 @@ server:
     mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
     min-response-size: 1024
 
+jasypt:
+  encryptor:
+    password: fg1YAyCQHHU52xdA
+
 oak:
   security:
     client-authorization:
+      access-token-uri: http://uaa/oauth/token
+      token-service-id: uaa
       client-id: internal
       client-secret: internal
-    authentication:
-      jwt:
-        # Access Token is valid for 5 mins
-        token-validity-in-seconds: 300
-        # Refresh Token is valid for 7 days
-        token-validity-in-seconds-for-remember-me: 252000
-  mail: # specific oak mail property, for standard properties see MailProperties
-    from:
-    base-url: http://my-server-url-to-change # Modify according to your server's URL
+
+oauth2:
+  signature-verification:
+    public-key-endpoint-uri: http://uaa/oauth/token_key
+    #ttl for public keys to verify JWT tokens (in ms)
+    ttl: 3600000
+    #max. rate at which public keys will be fetched (in ms)
+    public-key-refresh-rate-limit: 10000
 
 uaa:
-  #be sure to to change to a different keystore in production!
-  #create one using: keytool -genkeypair -keyalg RSA -keystore keystore_prod.jks -storepass <secretpasswd> -alias <myalias>
   key-store:
     name: keystore.jks
     password: password
@@ -58,7 +61,6 @@ uaa:
     access-token-validity-in-seconds: 300
     # Refresh Token is valid for 7 days
     refresh-token-validity-in-seconds-for-remember-me: 604800
-    #change client secret in production, keep in sync with gateway configuration
     client-id: web_app
     secret: changeit
 

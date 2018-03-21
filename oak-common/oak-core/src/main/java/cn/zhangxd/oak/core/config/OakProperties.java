@@ -1,7 +1,6 @@
 package cn.zhangxd.oak.core.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.web.cors.CorsConfiguration;
 
 /**
  * Properties specific to Oak.
@@ -17,18 +16,12 @@ public class OakProperties {
 
     private final Swagger swagger = new Swagger();
 
-    private final CorsConfiguration cors = new CorsConfiguration();
-
     public Security getSecurity() {
         return security;
     }
 
     public Swagger getSwagger() {
         return swagger;
-    }
-
-    public CorsConfiguration getCors() {
-        return cors;
     }
 
     public static class Security {

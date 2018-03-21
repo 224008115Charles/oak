@@ -31,6 +31,13 @@ server:
     mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
     min-response-size: 1024
 
+flyway:
+  locations: classpath:/script
+
+jasypt:
+  encryptor:
+    password: fg1YAyCQHHU52xdA
+
 oak:
   security:
     client-authorization:
@@ -46,7 +53,4 @@ oauth2:
     ttl: 3600000
     #max. rate at which public keys will be fetched (in ms)
     public-key-refresh-rate-limit: 10000
-  web-client-configuration:
-    #change client secret in production, keep in sync with UAA configuration
-    client-id: web_app
-    secret: changeit
+

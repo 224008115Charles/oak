@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class MybatisConfiguration {
 
     /**
-     * mybatis-plus SQL执行效率插件【生产环境可以关闭】
+     * mybatis-plus SQL执行效率插件
      */
     @Bean
     @Profile(OakConstants.SPRING_PROFILE_DEVELOPMENT)

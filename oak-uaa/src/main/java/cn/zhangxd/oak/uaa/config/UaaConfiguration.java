@@ -28,9 +28,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.filter.CorsFilter;
 
 import javax.servlet.http.HttpServletResponse;
 import java.security.KeyPair;
@@ -60,11 +58,8 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
 
         private final TokenStore tokenStore;
 
-        private final CorsFilter corsFilter;
-
-        public ResourceServerConfiguration(TokenStore tokenStore, CorsFilter corsFilter) {
+        public ResourceServerConfiguration(TokenStore tokenStore) {
             this.tokenStore = tokenStore;
-            this.corsFilter = corsFilter;
         }
 
         @Override
@@ -75,7 +70,6 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
                     .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
             .and()
                 .csrf().disable()
-                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
                 .headers().frameOptions().disable()
             .and()
                 .sessionManagement()

@@ -30,14 +30,6 @@ server:
   port: 9999
 
 oak:
-  # CORS is only enabled by default with the "dev" profile, so BrowserSync can access the API
-  cors:
-    allowed-origins: "*"
-    allowed-methods: "*"
-    allowed-headers: "*"
-    exposed-headers: "Authorization"
-    allow-credentials: true
-    max-age: 1800
   security:
     client-authorization:
       access-token-uri: http://uaa/oauth/token
@@ -52,10 +44,6 @@ oauth2:
     ttl: 3600000
     #max. rate at which public keys will be fetched (in ms)
     public-key-refresh-rate-limit: 10000
-  web-client-configuration:
-    #keep in sync with UAA configuration
-    client-id: web_app
-    secret: changeit
 
 uaa:
   key-store:

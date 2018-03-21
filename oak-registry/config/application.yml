@@ -2,11 +2,6 @@ configserver:
   name: Docker Consul Service
   status: Connected to Consul Server running in Docker
 
-oak:
-  security:
-    authentication:
-      jwt:
-        secret: my-secret-token-to-change-in-production
 spring:
   cloud:
     consul:
