@@ -2,8 +2,8 @@ package cn.zhangxd.oak.uaa.config;
 
 import cn.zhangxd.oak.core.config.OakProperties;
 import cn.zhangxd.oak.core.security.AuthoritiesConstants;
+import cn.zhangxd.oak.uaa.security.UaaUsernamePasswordTokenGranter;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.loadbalancer.RestTemplateCustomizer;
 import org.springframework.context.ApplicationContext;
@@ -14,6 +14,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -22,6 +23,16 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.CompositeTokenGranter;
+import org.springframework.security.oauth2.provider.OAuth2RequestFactory;
+import org.springframework.security.oauth2.provider.TokenGranter;
+import org.springframework.security.oauth2.provider.client.ClientCredentialsTokenGranter;
+import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.code.AuthorizationCodeTokenGranter;
+import org.springframework.security.oauth2.provider.implicit.ImplicitTokenGranter;
+import org.springframework.security.oauth2.provider.refresh.RefreshTokenGranter;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -34,6 +45,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author zhangxd
@@ -109,7 +121,17 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
 
     private final UaaProperties uaaProperties;
 
-    public UaaConfiguration(OakProperties oakProperties, UaaProperties uaaProperties) {
+    private final AuthenticationManager authenticationManager;
+
+    private final UserDetailsService userDetailsService;
+
+    public UaaConfiguration(
+        AuthenticationManager authenticationManager,
+        UserDetailsService userDetailsService,
+        OakProperties oakProperties,
+        UaaProperties uaaProperties) {
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
         this.oakProperties = oakProperties;
         this.uaaProperties = uaaProperties;
     }
@@ -150,16 +172,37 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
         tokenEnhancerChain.setTokenEnhancers(new ArrayList<>(tokenEnhancers));
         endpoints
             .authenticationManager(authenticationManager)
+            .userDetailsService(userDetailsService)
             .tokenStore(tokenStore())
             .tokenEnhancer(tokenEnhancerChain)
             //don't reuse or we will run into session inactivity timeouts
             .reuseRefreshTokens(false)
         ;
+
+        endpoints.tokenGranter(uaaTokenGranter(endpoints.getTokenServices(),
+            endpoints.getAuthorizationCodeServices(), endpoints.getClientDetailsService(),
+            endpoints.getOAuth2RequestFactory()));
     }
 
-    @Autowired
-    @Qualifier("authenticationManagerBean")
-    private AuthenticationManager authenticationManager;
+    private TokenGranter uaaTokenGranter(
+        AuthorizationServerTokenServices tokenServices,
+        AuthorizationCodeServices codeServices,
+        ClientDetailsService clientDetailsService,
+        OAuth2RequestFactory requestFactory
+    ) {
+        List<TokenGranter> tokenGranters = new ArrayList<>();
+        tokenGranters.add(new UaaUsernamePasswordTokenGranter(authenticationManager,
+            tokenServices, clientDetailsService, requestFactory));
+        tokenGranters.add(new RefreshTokenGranter(tokenServices,
+            clientDetailsService, requestFactory));
+        tokenGranters.add(new AuthorizationCodeTokenGranter(tokenServices,
+            codeServices, clientDetailsService, requestFactory));
+        tokenGranters.add(new ClientCredentialsTokenGranter(tokenServices,
+            clientDetailsService, requestFactory));
+        tokenGranters.add(new ImplicitTokenGranter(tokenServices,
+            clientDetailsService, requestFactory));
+        return new CompositeTokenGranter(tokenGranters);
+    }
 
     /**
      * Apply the token converter (and enhancer) for token store.

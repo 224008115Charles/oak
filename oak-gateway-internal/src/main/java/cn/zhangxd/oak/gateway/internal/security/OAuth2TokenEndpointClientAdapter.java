@@ -43,6 +43,7 @@ public abstract class OAuth2TokenEndpointClientAdapter implements OAuth2TokenEnd
         MultiValueMap<String, String> formParams = new LinkedMultiValueMap<>();
         formParams.set("username", username);
         formParams.set("password", password);
+        formParams.set("realm", "sys");
         formParams.set("grant_type", "password");
         addAuthentication(reqHeaders, formParams);
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(formParams, reqHeaders);

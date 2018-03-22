@@ -1,7 +1,8 @@
-package cn.zhangxd.oak.uaa.security;
+package cn.zhangxd.oak.uaa.security.sys;
 
 import cn.zhangxd.oak.uaa.client.SysUserService;
 import cn.zhangxd.oak.uaa.client.vo.SysUserVO;
+import cn.zhangxd.oak.uaa.security.UserNotActivatedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
  *
  * @author zhangxd
  */
-@Component("userDetailsService")
+@Component("sysUserDetailsService")
 public class SysUserDetailsServiceImpl implements UserDetailsService {
 
     private final Logger log = LoggerFactory.getLogger(SysUserDetailsServiceImpl.class);
@@ -47,6 +48,7 @@ public class SysUserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
             .map(SimpleGrantedAuthority::new)
             .collect(Collectors.toList());
+        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_SYS"));
 
         return new org.springframework.security.core.userdetails.User(user.getLogin(),
             user.getPassword(),
