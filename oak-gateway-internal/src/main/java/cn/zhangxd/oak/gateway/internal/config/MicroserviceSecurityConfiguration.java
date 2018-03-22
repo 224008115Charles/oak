@@ -50,7 +50,7 @@ public class MicroserviceSecurityConfiguration extends ResourceServerConfigurerA
                 .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
                 .antMatchers("/swagger-resources/configuration/ui").permitAll()
         ;
-        // @formatter:off
+        // @formatter:on
     }
 
     @Bean

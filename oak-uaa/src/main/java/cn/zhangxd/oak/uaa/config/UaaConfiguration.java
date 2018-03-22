@@ -82,7 +82,7 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
                     .antMatchers("/swagger-resources/configuration/ui").permitAll()
                     .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
             ;
-            // @formatter:off
+            // @formatter:on
         }
 
         @Override
@@ -138,7 +138,7 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
             .accessTokenValiditySeconds((int) oakProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSeconds())
             .refreshTokenValiditySeconds((int) oakProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSecondsForRememberMe())
         ;
-        // @formatter:off
+        // @formatter:on
     }
 
     @Override
