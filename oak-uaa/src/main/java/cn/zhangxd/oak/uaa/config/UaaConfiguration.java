@@ -179,16 +179,13 @@ public class UaaConfiguration extends AuthorizationServerConfigurerAdapter imple
             .reuseRefreshTokens(false)
         ;
 
-        endpoints.tokenGranter(uaaTokenGranter(endpoints.getTokenServices(),
-            endpoints.getAuthorizationCodeServices(), endpoints.getClientDetailsService(),
-            endpoints.getOAuth2RequestFactory()));
+        endpoints.tokenGranter(uaaTokenGranter(endpoints.getTokenServices(), endpoints.getAuthorizationCodeServices(),
+            endpoints.getClientDetailsService(), endpoints.getOAuth2RequestFactory()));
     }
 
     private TokenGranter uaaTokenGranter(
-        AuthorizationServerTokenServices tokenServices,
-        AuthorizationCodeServices codeServices,
-        ClientDetailsService clientDetailsService,
-        OAuth2RequestFactory requestFactory
+        AuthorizationServerTokenServices tokenServices, AuthorizationCodeServices codeServices,
+        ClientDetailsService clientDetailsService, OAuth2RequestFactory requestFactory
     ) {
         List<TokenGranter> tokenGranters = new ArrayList<>();
         tokenGranters.add(new UaaUsernamePasswordTokenGranter(authenticationManager,
