@@ -1,0 +1,66 @@
+logging:
+  level:
+    ROOT: debug
+    cn.zhangxd.oak: debug
+
+spring:
+  profiles:
+    active: dev
+    include: swagger
+  jackson:
+      serialization.indent_output: true
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+      host: localhost
+      port: 8500
+  datasource:
+    url: jdbc:mysql://localhost:3306/oak_account?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: ENC(moI6V+Ba34e3dKlukrdpJA==)
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      stat-view-servlet:
+        allow: true
+  zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
+    base-url: http://localhost:9411
+    enabled: false
+    locator:
+      discovery:
+        enabled: true
+
+mybatis-plus:
+  global-config:
+    #刷新mapper
+    refresh-mapper: true
+
+flyway:
+  locations: classpath:/script
+
+jasypt:
+  encryptor:
+    password: fg1YAyCQHHU52xdA
+
+server:
+  port: 8081
+
+oak:
+  security:
+    client-authorization:
+      access-token-uri: http://uaa/oauth/token
+      token-service-id: uaa
+      client-id: internal
+      client-secret: internal
+
+oauth2:
+  signature-verification:
+    public-key-endpoint-uri: http://uaa/oauth/token_key
+    #ttl for public keys to verify JWT tokens (in ms)
+    ttl: 3600000
+    #max. rate at which public keys will be fetched (in ms)
+    public-key-refresh-rate-limit: 10000

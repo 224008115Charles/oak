@@ -1,0 +1,8 @@
+  ${AnsiColor.GREEN} ██████╗ ${AnsiColor.RED}   █████╗   ██╗  ██╗
+  ${AnsiColor.GREEN}██╔═══██╗${AnsiColor.RED}  ██╔══██╗  ██║ ██╔╝
+  ${AnsiColor.GREEN}██║   ██║${AnsiColor.RED}  ███████║  █████╔╝
+  ${AnsiColor.GREEN}██║   ██║${AnsiColor.RED}  ██╔══██║  ██╔═██╗
+  ${AnsiColor.GREEN}╚██████╔╝${AnsiColor.RED}  ██║  ██║  ██║  ██╗
+  ${AnsiColor.GREEN} ╚═════╝ ${AnsiColor.RED}  ╚═╝  ╚═╝  ╚═╝  ╚═╝
+
+${AnsiColor.BLUE}:: Oak Gateway :: Running Spring Boot ${spring-boot.version} ::

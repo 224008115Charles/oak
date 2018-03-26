@@ -10,13 +10,13 @@ import org.junit.Test;
 public class CodeGenerator {
 
     private static final String[] BASE_INCLUDE_TABLES = new String[]{
-        "sys_user", "sys_role", "sys_menu", "sys_org"
+        "user", "role", "menu", "org"
     };
     private static final String[] SIMPLE_INCLUDE_TABLES = new String[]{
-        "sys_user_role", "sys_role_menu", "sys_user_org"
+        "user_role", "role_menu", "user_org"
     };
-    private static final String BASE_PACKAGE = "cn.zhangxd.oak.service.system";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/oak_sys";
+    private static final String BASE_PACKAGE = "cn.zhangxd.oak.account";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/oak_account";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "root";
 

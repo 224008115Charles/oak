@@ -13,7 +13,7 @@
         <module>oak-bom</module>
         <module>oak-common</module>
         <module>oak-uaa</module>
-        <module>oak-gateway-internal</module>
-        <module>oak-service-system</module>
+        <module>oak-gateway</module>
+        <module>oak-account</module>
     </modules>
 </project>
